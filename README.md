@@ -1,3 +1,69 @@
+
+### export
+- Name exports: are useful to export several values
+```js
+// Exporting individual features 
+export var name1 = …, name2 = …, …, nameN; // also let, const 
+  
+// Export list 
+export { name1, name2, …, nameN }; 
+  
+//Exporting everything at once 
+export { object, number, x, y, boolean, string } 
+  
+// Renaming exports 
+export { variable1 as name1, variable2 as name2, …, nameN }; 
+  
+// export features declared earlier 
+export { myFunction, myVariable }; 
+
+//file math.js 
+function square(x) { 
+  return x * x; 
+} 
+function cube(x) { 
+  return x * x; 
+} 
+export { square, cube }; 
+  
+   
+//while importing square function in test.js 
+import { square, cube } from './math; 
+console.log(square(8)) //64 
+console.log(cube(8)) //512 
+```
+- Default exports: are useful to export only a single object, function, variable
+```js
+// file module.js 
+var x=4;  
+export default x; 
+  
+// test.js 
+// while importing x in test.js 
+import y from './module';  
+// note that y is used import x instead of  
+// import x, because x was default export 
+console.log(y);         
+// output will be 4 
+```
+- Using Named and Default Exports at the same time
+```js
+//module.js 
+var x=2; 
+const y=4; 
+function fun() { 
+   return "This a default export."
+} 
+function square(x) { 
+  return x * x; 
+} 
+export { fun as default, x, y, square };
+
+//test.js file 
+import anyname, { x, y, square} from './module.js'; 
+console.log(anyname()); //This is a default export. 
+console.log(x); //2 
+```
 ### Promise, Async / Await
 ES5: callback -> ES6: Promise -> ES7: async/await
 - Async - khai báo một hàm bất đồng bộ (async function someName(){...}).
