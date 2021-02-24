@@ -150,3 +150,21 @@ ES5: callback -> ES6: Promise -> ES7: async/await
         .catch(errorHandler);
    ```
   
+### Tricks
+1) Remove duplicates from an Array!
+```js
+const array = [1, 2, 3, 2, 1, true, true, false, 'Ratul', 1, 5];
+const filtered__array = [...new Set(array)];
+console.log(filtered__array) // [ 1, 2, 3, true, false, 'Ratul', 5 ]
+```
+2) Turn a Decimal Number to a integer.
+```js
+const number = 23.6565
+console.log(number | 0);
+```
+3) Getting the Last Value of an Array!
+```js
+const array = [1, 2, 3, 4, 5]
+const last_Item = array.slice(-1)
+console.log(last_Item)
+```
