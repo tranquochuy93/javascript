@@ -1,4 +1,12 @@
-
+### basic
+#### Array
+1. Splice: adds/removes items to/from an array, and returns the removed item
+  ```js
+  let fruits = ["Banana", "Orange", "Apple", "Mango"];
+  let removeEles = fruits.splice(2); // remove items from index = 2
+  // fruits = ["Banana", "Orange"]
+  // removeEles = ["Apple", "Mango"]
+  ```
 ### export
 - Name exports: are useful to export several values
 ```js
