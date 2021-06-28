@@ -157,7 +157,20 @@ ES5: callback -> ES6: Promise -> ES7: async/await
         .then(successHandler)
         .catch(errorHandler);
    ```
-  
+
+### critical rendering path
+1. concept
+@media (orientation: landscape): the height is greater than or equal to the width
+@media (orientation: landscape): the width is greater than the height
+
+2 order to render HTML
+- The DOM and CSSOM trees are combined to form the render tree.
+- Render tree contains only the nodes required to render the page.
+- Layout computes the exact position and size of each object.
+- The last step is paint, which takes in the final render tree and renders the pixels to the screen.
+
+| Normal | Async | Defer |
+|
 ### Tricks
 1) Remove duplicates from an Array!
 ```js
