@@ -1,4 +1,152 @@
 ### basic
+#### Hoisting
+```js
+console.log(x); // undefined
+var x = 5;
+console.log(x);// 5
+```
+- Nếu x chưa được khai báo thì js sẽ khai báo biến x và không gán giá trị => var x; console.log(x);
+
+#### bind function
+- set context(this) to function
+```js
+var mouse = {
+  name: 'mickey',
+  showName: function() {
+    console.log(this.name);
+  }
+}
+
+function run(callback) {
+  callback();
+}
+
+run(mouse.showName);
+run(mouse.showName.bind(mouse));
+var show = mouse.showName;
+show();
+var bindShow = mouse.showName.bind(mouse);
+bindShow();
+```
+#### Arrow function
+```js
+var mouse = {
+  name: 'mickey',
+  showName: function() {
+    var run = function() {
+      console.log(this.name);
+    }
+
+    var runArrow = () => {
+      console.log(this.name);
+    }
+
+    run(); // undefined => using bind
+    runArrow(); // mickey
+  }
+}
+
+mouse.showName();
+```
+
+- Arrow function không có context.
+
+#### arguments
+- arguments is object like array
+```js
+function run() {
+  var numbers = Array.from(arguments);
+  /*
+  arguments = {
+    0: 1,
+    1: 2,
+    2: 3,
+    3: 10,
+    length: 4
+  }
+  */
+  console.log(arguments);
+  var sum = numbers.reduce((sum, num) => sum + num, 0);
+  console.log(sum); // 16
+}
+
+run(1, 2, 3, 10);
+```
+#### apply, call
+- apply(this, [param1, param2])
+- call(this, param1, param2)
+```js
+function sum() {
+  var numbers = Array.from(arguments);
+  return sum = numbers.reduce((sum, num) => sum + num, 0);
+}
+
+function avg() {
+  var x = sum.apply(null, arguments);// this, [param1, param2, ...]
+  console.log(x / arguments.length);
+}
+
+avg(1, 2, 3, 10);
+
+var mouse = {
+  name: 'mickey',
+  age: 100,
+};
+
+function showInfo() {
+  console.log(`${this.name}: ${this.age}`);
+}
+
+showInfo.call(mouse);
+```
+
+#### class
+```js
+class Bird {
+  constructor(name) {
+    this.name = name;
+  }
+
+  eat() {
+    console.log('Eating');
+  }
+}
+
+var bird = new Bird();
+bird.eat();
+
+class Parrot extends Bird {
+  fly() {
+    console.log(`${this.name} is flying`);
+  }
+}
+
+var parrot = new Parrot('parrot');
+parrot.fly();// parrot is flying
+```
+
+- extends using constructor function
+
+```js
+function Bird(name) {
+  this.name = name;
+}
+
+Bird.prototype.eat = function() {
+  console.log(`${this.name} is eating`);
+}
+
+var bird = new Bird('bird');
+bird.eat();
+
+function Parrot() {
+  Bird.apply(this, arguments);
+}
+
+Parrot.prototype = Bird.prototype;
+var parrot = new Parrot('parrot');
+parrot.eat();
+```
 #### Array
 1. Splice: adds/removes items to/from an array, and returns the removed item
   ```js
