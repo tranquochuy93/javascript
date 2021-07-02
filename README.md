@@ -147,6 +147,38 @@ Parrot.prototype = Bird.prototype;
 var parrot = new Parrot('parrot');
 parrot.eat();
 ```
+
+#### super
+```js
+class Hero {
+  constructor(name, hp, damge) {
+    this.name = name;
+    this.hp = hp;
+    this.damge = damge;
+  }
+
+  attack(enermy) {
+    enermy.hp -= this.damge;
+  }
+}
+
+class HeroAttack extends Hero {
+  constructor(name, hp, damge, level) {
+    super(name, hp, damge);
+    this.level = level;
+  }
+  attack(enermy) {
+    super.attack(enermy);
+    this.hp += this.damge;
+  }
+}
+
+const heroA = new HeroAttack('A', 200, 10);
+const heroB = new Hero('B', 100, 5);
+console.log(heroA, heroB);
+heroA.attack(heroB);
+console.log(heroA, heroB);
+```
 #### Array
 1. Splice: adds/removes items to/from an array, and returns the removed item
   ```js
