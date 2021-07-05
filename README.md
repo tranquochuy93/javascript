@@ -179,6 +179,77 @@ console.log(heroA, heroB);
 heroA.attack(heroB);
 console.log(heroA, heroB);
 ```
+#### static method
+```js
+function Foo() {
+}
+
+// normal method
+Foo.prototype.normalMethod = function() {
+  console.log('normalMethod');
+}
+
+// static method
+Foo.normalMethod = function() {
+  console.log('staticMethod');
+}
+```
+
+#### rest
+```js
+function substract(minuend, ...subtrahends) { // subtrahends is array
+  return subtrahends.reduce((num, subtrahend) => {
+    return num - subtrahend;
+  }, minuend);
+}
+
+console.log(substract(10, 1, 2, 3));
+```
+
+#### closure
+```js
+function debug(name) {
+  return function(error) {
+    console.log(`[${name}]: ${error}`);
+  }
+}
+
+const log = debug('Connect');
+log('Timeout');
+```
+
+#### Destructuring
+```js
+// Destructuring array
+let array = [1, 2 , 3, 4];
+let [a, b, c, d] = array;
+console.log(d);
+[a, , , d] = array;
+console.log(d);
+[a, b] = array;
+console.log(b);
+[a, ...b] = array;
+console.log(b);
+[...b] = array;
+console.log(b);
+array = [1];
+[a, b = 20] = array;
+console.log(b);
+
+//Destructuring 
+
+let object = {
+  name: 'abc',
+  age: 10,
+}
+
+let {name: x, age: y} = object;
+console.log(x, y);
+
+let {name, age} = object;
+console.log(name, age);
+```
+
 #### Array
 1. Splice: adds/removes items to/from an array, and returns the removed item
   ```js
