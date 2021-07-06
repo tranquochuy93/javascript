@@ -441,8 +441,22 @@ const last_Item = array.slice(-1)
 console.log(last_Item)
 ```
 ### design partern
-1. Factory Pattern
+#### Types of Patterns:
+- Creational — Addresses problems related to creating objects.
+- Structural — Addresses the relationship between entities and how together they can compose a larger structure.
+- Behavioral — Addresses how objects communicate and interact with each other.
+
+#### 1.Factory Pattern: Creational
 - The factory pattern wraps a constructor for different types of objects and returns instances of the objects via a simple API
+- it allows us to create an object whose class or constructor is only known at runtime
+- Express.js for Node
+ - you used its app factory(createApplication) when you created the express app
+ - The constructor that creates the app for you is created at runtime
+```js
+const express = require('express');
+const app = express();
+```
+
 - Create laptop.js
 ```js
 const Laptop = function({ ram, hdd, name }) {
@@ -492,3 +506,32 @@ const myTablet = gadgetFactory.createGadget("Tablet", {
 console.log(myLaptop); // Laptop { ram: 8, ssd: 256, name: 'Bab\'s MacBook Pro' }
 console.log(myTablet); // Tablet { ram: 4, hdd: 128, network: '4G', name: 'Bab\'s iPad' }
 ```
+#### 2.Observer Pattern:  RxJs
+#### 3.Module Pattern
+- The module pattern allows you to encapsulate functionally and organize code in modules
+- Node: code is wrapped in a module using the IIFE (Immediately Invoked Function Expression)
+```js
+const globalData = {
+  x: 20
+};
+const myModule = (function(global) { // <- access injections
+  // private stuff in the module
+  const val = 10 + global.x;
+  // expose what you want
+  return {
+    prop: 12,
+    method() {
+      return val;
+    }
+  }
+})(globalData); // <- inject into your module
+console.log(myModule.prop); // prints 12
+console.log(myModule.method()); // prints 30
+```
+#### Proxy pattern
+#### Facade Pattern
+- it simplifies complex API and to unify multiple separate APIs
+- Jquery: it simplifies all the complexity of working with DOM by exposing the same API
+
+#### Prototype Pattern
+#### MVVM — The Model View View-Model
