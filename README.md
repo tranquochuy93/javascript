@@ -440,3 +440,55 @@ const array = [1, 2, 3, 4, 5]
 const last_Item = array.slice(-1)
 console.log(last_Item)
 ```
+### design partern
+1. Factory Pattern
+- The factory pattern wraps a constructor for different types of objects and returns instances of the objects via a simple API
+- Create laptop.js
+```js
+const Laptop = function({ ram, hdd, name }) {
+  this.ram = ram || 0;
+  this.hdd = hdd || 0;
+  this.name = name || "";
+};
+module.exports = Laptop;
+```
+- Create tablet.js
+```js
+const Tablet = function({ ram, hdd, name, network }) {
+    this.ram = ram || 0;
+    this.hdd = hdd || 0;
+    this.network = network || 0;
+    this.name = name || "";
+};
+module.exports = Tablet;
+```
+
+- Create gadgetFactory.js
+```js
+const Laptop = require("./laptop");
+const Tablet = require("./tablet");
+const gadget = { Laptop, Tablet };
+module.exports = {
+    createGadget(type, attributes) {
+        const GadgetType = gadget[type];
+        return new GadgetType(attributes);
+    }
+};
+```
+- Implement
+```js
+const gadgetFactory = require("./gadgetFactory");
+const myLaptop = gadgetFactory.createGadget("Laptop", {
+    ram: 8,
+    ssd: 256,
+    name: "Bab's MacBook Pro"
+});
+const myTablet = gadgetFactory.createGadget("Tablet", {
+    ram: 4,
+    hdd: 128,
+    name: "Bab's iPad",
+    network: '4G'
+});
+console.log(myLaptop); // Laptop { ram: 8, ssd: 256, name: 'Bab\'s MacBook Pro' }
+console.log(myTablet); // Tablet { ram: 4, hdd: 128, network: '4G', name: 'Bab\'s iPad' }
+```
