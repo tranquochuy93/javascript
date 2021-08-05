@@ -440,6 +440,25 @@ const array = [1, 2, 3, 4, 5]
 const last_Item = array.slice(-1)
 console.log(last_Item)
 ```
+#### Convert vietnamese to ASSCII
+```js
+function removeVietnameseAccents(str) {
+    const from = 'àáãảạăằắẳẵặâầấẩẫậèéẻẽẹêềếểễệđùúủũụưừứửữựòóỏõọôồốổỗộơờớởỡợìíỉĩịäëïîöüûñçýỳỹỵỷ';
+    const to = 'aaaaaaaaaaaaaaaaaeeeeeeeeeeeduuuuuuuuuuuoooooooooooooooooiiiiiaeiiouuncyyyyy';
+    for (let i = 0, l = from.length; i < l; i++) {
+        str = str.replace(RegExp(from[i], 'gi'), to[i]);
+    }
+
+    str = str
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\-\s]/g, '')
+        .replace(/-+/g, '');
+
+    return str;
+} removeVietnameseAccents('ú sáng'); // u sang
+
+```
 ### design partern
 #### Types of Patterns:
 - Creational — Addresses problems related to creating objects.
